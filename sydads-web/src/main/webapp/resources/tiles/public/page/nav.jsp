@@ -1,3 +1,5 @@
+<%@page contentType="text/html; charset=UTF-8"%>
+
 <div class="container">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -9,14 +11,14 @@
         <a class="navbar-brand" href="#">Project name</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
-        <form class="navbar-form navbar-right">
+        <form class="navbar-form navbar-right" action="login">
             <div class="form-group">
-                <input type="text" placeholder="Email" class="form-control">
+                <input type="text" placeholder="Email" class="form-control" name="email">
             </div>
             <div class="form-group">
-                <input type="password" placeholder="Password" class="form-control">
+                <input type="password" placeholder="Password" class="form-control" name="password">
             </div>
-            <button type="submit" class="btn btn-success">Sign in</button>
+            <button type="submit" class="btn btn-success">用户登录</button>
         </form>
     </div><!--/.navbar-collapse -->
 </div>

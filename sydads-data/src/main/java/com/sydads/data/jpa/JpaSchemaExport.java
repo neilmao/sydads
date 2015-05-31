@@ -1,4 +1,4 @@
-package com.sydads.schema;
+package com.sydads.data.jpa;
 
 import javax.persistence.Persistence;
 import java.io.IOException;
@@ -13,7 +13,8 @@ import java.util.Properties;
  */
 public class JpaSchemaExport {
 
-    private static final String sqlCreateFile = "schema-create.sql";
+    private static final String SQL_CREATE_FILE = "schema-create.sql";
+
     public static void main(String[] args) throws IOException {
         execute(args[0], args[1]);
         System.exit(0);
@@ -38,7 +39,7 @@ public class JpaSchemaExport {
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_CREATE_SOURCE, "metadata");
 
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_SCRIPTS_CREATE_TARGET,
-                               destination + sqlCreateFile);
+                               destination + SQL_CREATE_FILE);
 
         Persistence.generateSchema(persistenceUnitName, properties);
     }

@@ -17,6 +17,7 @@
             <artifactId>sydads-tools</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
+
         <dependency>
             <groupId>postgresql</groupId>
             <artifactId>postgresql</artifactId>
@@ -26,6 +27,11 @@
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>org.eclipse.persistence.jpa</artifactId>
             <version>2.6.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>4.3.9.Final</version>
         </dependency>
     </dependencies>
 
@@ -44,7 +50,7 @@
                         <configuration>
                             <target>
                                 <!-- ANT Task definition -->
-                                <java classname="com.sydads.schema.JpaSchemaExport" fork="true" failonerror="true">
+                                <java classname="com.sydads.data.jpa.JpaSchemaExport" fork="true" failonerror="true">
                                     <arg value="sydads-repository" />
                                     <arg value="src/main/resources/jpa/sql/" />
                                     <!-- reference to the passed-in classpath reference -->

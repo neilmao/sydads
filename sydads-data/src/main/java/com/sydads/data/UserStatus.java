@@ -7,7 +7,8 @@ package com.sydads.data;
  */
 public enum UserStatus {
 
-    Active,
-    NotActive,
-    Blocked
+    WaitingVerify,
+    Verified,
+    Blocked,
+    Deleted
 }

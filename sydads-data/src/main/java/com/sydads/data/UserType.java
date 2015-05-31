@@ -6,4 +6,7 @@ package com.sydads.data;
  * Date: 12/05/15
  */
 public enum UserType {
+
+    Customer,
+    Admin
 }
