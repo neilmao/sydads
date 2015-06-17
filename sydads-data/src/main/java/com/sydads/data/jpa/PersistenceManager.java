@@ -15,14 +15,14 @@ public enum PersistenceManager {
     private EntityManagerFactory entityManagerFactory;
 
     private PersistenceManager() {
-        entityManagerFactory = Persistence.createEntityManagerFactory("sydads-repository");
+        this.entityManagerFactory = Persistence.createEntityManagerFactory("sydads-repository");
     }
 
     public EntityManager getEntityManger() {
-        return entityManagerFactory.createEntityManager();
+        return this.entityManagerFactory.createEntityManager();
     }
 
     public void close() {
-        entityManagerFactory.close();
+        this.entityManagerFactory.close();
     }
 }

@@ -17,4 +17,9 @@
         <put-attribute name="body" value="/resources/tiles/public/page/indexBody.jsp" />
     </definition>
 
+    <definition name="login" template="/resources/tiles/public/page/loginTemplate.jsp">
+        <put-attribute name="body" value="/resources/tiles/public/page/loginBody.jsp" />
+        <put-attribute name="footer" value="/resources/tiles/public/page/footer.jsp" />
+    </definition>
+
 </tiles-definitions>

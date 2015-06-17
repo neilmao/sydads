@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>Jumbotron Template for Bootstrap</title>
+    <title>welcome to sydads</title>
 
     <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
