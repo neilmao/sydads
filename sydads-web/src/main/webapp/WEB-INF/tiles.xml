@@ -11,6 +11,7 @@
         <put-attribute name="banner" value="/resources/tiles/public/page/banner.jsp" />
         <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/resources/tiles/public/page/footer.jsp" />
+        <put-attribute name="loginModal" value="/resources/tiles/public/page/loginModal.jsp" />
     </definition>
 
     <definition name="index" extends="public.page.defaultTemplate">
