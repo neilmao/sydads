@@ -1,12 +1,11 @@
 package com.sydads.data;
 
-
 import com.sydads.Guid;
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.Collections;
 import java.util.Date;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -23,17 +22,24 @@ public class User extends Guid {
     private String firstName;
     private String lastName;
     private String mobile;
-    private UserType type;
     private Date registerDate;
     private Date verifyDate;
+    private Set<UserRole> userRoles;
     private UserStatus userStatus;
 
     public User() {
-        type = UserType.Customer;
+        userRoles = Collections.singleton(Role.Pusher);
         registerDate = new Date();
         userStatus = UserStatus.WaitingVerify;
     }
 
+    @Override
+    @Column(name = "id", length = 64)
+    public String getId() {
+        return super.getId();
+    }
+
+    @Id
     @Column(name = "Email")
     public String getEmail() {
         return email;
@@ -79,15 +85,6 @@ public class User extends Guid {
         this.mobile = mobile;
     }
 
-    @Column(name = "UserType")
-    public UserType getType() {
-        return type;
-    }
-
-    public void setType(UserType type) {
-        this.type = type;
-    }
-
     @Column(name = "RegisterDate")
     public Date getRegisterDate() {
         return registerDate;
@@ -104,6 +101,15 @@ public class User extends Guid {
 
     public void setVerifyDate(Date verifyDate) {
         this.verifyDate = verifyDate;
+    }
+
+    @OneToMany(mappedBy = "user")
+    public Set<UserRole> getRoles() {
+        return userRoles;
+    }
+
+    public void setRoles(Set<UserRole> userRoles) {
+        this.userRoles = userRoles;
     }
 
     @Column(name = "UserStatus")

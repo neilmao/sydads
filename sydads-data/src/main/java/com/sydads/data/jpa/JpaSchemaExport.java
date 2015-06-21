@@ -37,7 +37,6 @@ public class JpaSchemaExport {
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_CREATE_SCHEMAS, "true");
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_SCRIPTS_ACTION, "create");
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_CREATE_SOURCE, "metadata");
-
         properties.setProperty(org.hibernate.jpa.AvailableSettings.SCHEMA_GEN_SCRIPTS_CREATE_TARGET,
                                destination + SQL_CREATE_FILE);
 

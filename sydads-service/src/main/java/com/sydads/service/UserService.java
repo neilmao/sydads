@@ -1,15 +1,17 @@
 package com.sydads.service;
 
+import com.sydads.data.User;
+import org.springframework.stereotype.Component;
+
 /**
  * Created with IntelliJ IDEA.
  * User: neilmao
  * Date: 30/05/15
  */
+@Component
 public interface UserService {
 
-    public boolean checkIfEmailIsUsed(String email);
+    boolean checkIfEmailIsUsed(String email);
 
-    public boolean register(String email, String password);
-
-    public boolean login(String email, String password);
+    boolean register(String email, String password);
 }

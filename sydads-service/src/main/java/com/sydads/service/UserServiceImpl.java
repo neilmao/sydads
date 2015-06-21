@@ -1,6 +1,8 @@
 package com.sydads.service;
 
 import com.sydads.data.User;
+import com.sydads.repository.dao.UserDao;
+import org.springframework.beans.factory.annotation.Autowired;
 
 /**
  * Created with IntelliJ IDEA.
@@ -8,6 +10,9 @@ import com.sydads.data.User;
  * Date: 30/05/15
  */
 public class UserServiceImpl implements UserService {
+
+    @Autowired
+    private UserDao userDao;
 
     @Override
     public boolean checkIfEmailIsUsed(String email) {
@@ -28,10 +33,5 @@ public class UserServiceImpl implements UserService {
             return false;
         }
 
-    }
-
-    @Override
-    public boolean login(String email, String password) {
-        return false;  //To change body of implemented methods use File | Settings | File Templates.
     }
 }
