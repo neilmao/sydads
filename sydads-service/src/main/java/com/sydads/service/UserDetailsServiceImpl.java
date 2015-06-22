@@ -2,6 +2,7 @@ package com.sydads.service;
 
 import com.sydads.data.User;
 import com.sydads.data.Role;
+import com.sydads.data.UserStatus;
 import com.sydads.repository.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by neilmao on 22/06/2015.
@@ -26,29 +27,25 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userDao.findUserByEmail(username);
 
-        List<GrantedAuthority> authorities = buildUserAuthority(user.getRole());
+        List<GrantedAuthority> authorities = buildUserAuthority(user.getRoles());
 
         return buildUserForAuthentication(user, authorities);
     }
 
-    private User buildUserForAuthentication(User user,
-                                            List<grantedauthority> authorities) {
-        return new User(user.getUsername(), user.getPassword(),
-                user.isEnabled(), true, true, true, authorities);
+    private UserDetails buildUserForAuthentication(User user,
+                                            List<GrantedAuthority> authorities) {
+        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+                UserStatus.isActive(user.getStatus()), true, true, true, authorities);
     }
 
-    private List<GrantedAuthority> buildUserAuthority(Set<userrole> userRoles) {
+    private List<GrantedAuthority> buildUserAuthority(Set<Role> userRoles) {
 
-        Set<grantedauthority> setAuths = new HashSet<grantedauthority>();
+        List<GrantedAuthority> auths = new LinkedList<>();
 
         // Build user's authorities
         for (Role userRole : userRoles) {
-            setAuths.add(new SimpleGrantedAuthority(userRole.getRole()));
+            auths.add(new SimpleGrantedAuthority(userRole.toString()));
         }
-
-        List<grantedauthority> Result = new ArrayList<grantedauthority>(
-                setAuths);
-
-        return Result;
+        return auths;
     }
 }

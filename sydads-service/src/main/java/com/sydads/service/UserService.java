@@ -13,5 +13,5 @@ public interface UserService {
 
     boolean checkIfEmailIsUsed(String email);
 
-    boolean register(String email, String password);
+    User register(String email, String password);
 }

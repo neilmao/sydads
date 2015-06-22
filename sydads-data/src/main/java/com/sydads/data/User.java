@@ -24,13 +24,13 @@ public class User extends Guid {
     private String mobile;
     private Date registerDate;
     private Date verifyDate;
-    private Set<UserRole> userRoles;
-    private UserStatus userStatus;
+    private Set<Role> roles;
+    private UserStatus status;
 
     public User() {
-        userRoles = Collections.singleton(Role.Pusher);
+        roles = Collections.singleton(Role.Pusher);
         registerDate = new Date();
-        userStatus = UserStatus.WaitingVerify;
+        status = UserStatus.WaitingVerify;
     }
 
     @Override
@@ -103,21 +103,23 @@ public class User extends Guid {
         this.verifyDate = verifyDate;
     }
 
-    @OneToMany(mappedBy = "user")
-    public Set<UserRole> getRoles() {
-        return userRoles;
+    @ElementCollection
+    @Enumerated(EnumType.STRING)
+    @Column(name = "UserRole")
+    public Set<Role> getRoles() {
+        return roles;
     }
 
-    public void setRoles(Set<UserRole> userRoles) {
-        this.userRoles = userRoles;
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
     }
 
     @Column(name = "UserStatus")
-    public UserStatus getUserStatus() {
-        return userStatus;
+    public UserStatus getStatus() {
+        return status;
     }
 
-    public void setUserStatus(UserStatus userStatus) {
-        this.userStatus = userStatus;
+    public void setStatus(UserStatus status) {
+        this.status = status;
     }
 }

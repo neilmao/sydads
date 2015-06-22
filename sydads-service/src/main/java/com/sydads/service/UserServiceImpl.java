@@ -16,22 +16,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean checkIfEmailIsUsed(String email) {
-        return false;
+        return userDao.checkIfEmailIsUsed(email);
     }
 
     @Override
-    public boolean register(String email, String password) {
+    public User register(String email, String password) {
 
         if (!checkIfEmailIsUsed(email)) {
             User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-
-
-            return true;
+            return user;
         } else {
-            return false;
+            return null;
         }
-
     }
 }

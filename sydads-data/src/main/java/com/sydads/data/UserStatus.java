@@ -10,5 +10,17 @@ public enum UserStatus {
     WaitingVerify,
     Verified,
     Blocked,
-    Deleted
+    Deleted;
+
+    public static boolean isActive(UserStatus status) {
+         switch (status) {
+             case WaitingVerify:
+             case Verified:
+                 return true;
+             case Blocked:
+             case Deleted:
+             default:
+                 return false;
+         }
+    }
 }

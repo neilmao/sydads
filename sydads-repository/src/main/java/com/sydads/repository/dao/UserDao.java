@@ -28,4 +28,11 @@ public class UserDao {
         else
             return null;
     }
+
+    public boolean checkIfEmailIsUsed(String email) {
+        Query query = sessionFactory.getCurrentSession().createQuery("select user from AdsUser user where user.email = :email");
+        query.setParameter("email", email);
+        List<User> result = query.list();
+        return result.size() > 0;
+    }
 }
