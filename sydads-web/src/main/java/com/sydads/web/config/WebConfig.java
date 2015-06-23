@@ -3,6 +3,8 @@ package com.sydads.web.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
+import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -17,12 +19,17 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
  */
 @Configuration
 @EnableWebMvc
-//@ComponentScan//(basePackages = { "com.sydads.web.controller" })
+@ComponentScan({"com.sydads.web", "com.sydads.service", "com.sydads.repository"})
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer){
+        configurer.enable();
     }
 
     @Bean
@@ -35,7 +42,7 @@ public class WebConfig extends WebMvcConfigurerAdapter {
     @Bean
     public TilesConfigurer tilesConfigurer() {
         TilesConfigurer tilesConfigurer = new TilesConfigurer();
-        tilesConfigurer.setDefinitions(new String[] { "/WEB-INF/tiles.xml" });
+        tilesConfigurer.setCompleteAutoload(true);
         tilesConfigurer.setCheckRefresh(true);
         return tilesConfigurer;
     }

@@ -33,13 +33,6 @@ public class User extends Guid {
         status = UserStatus.WaitingVerify;
     }
 
-    @Override
-    @Column(name = "id", length = 64)
-    public String getId() {
-        return super.getId();
-    }
-
-    @Id
     @Column(name = "Email")
     public String getEmail() {
         return email;

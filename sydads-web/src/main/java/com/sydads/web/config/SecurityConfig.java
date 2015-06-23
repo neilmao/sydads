@@ -1,6 +1,7 @@
 package com.sydads.web.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -10,12 +11,11 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
-import javax.activation.DataSource;
-
 /**
  * Created by neilmao on 16/06/2015.
  */
 @Configuration
+@ComponentScan
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
