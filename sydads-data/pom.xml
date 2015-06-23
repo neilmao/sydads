@@ -51,7 +51,7 @@
                             <target>
                                 <!-- ANT Task definition -->
                                 <java classname="com.sydads.data.jpa.JpaSchemaExport" fork="true" failonerror="true">
-                                    <arg value="sydads-repository" />
+                                    <arg value="sydads-data" />
                                     <arg value="src/main/resources/jpa/sql/" />
                                     <!-- reference to the passed-in classpath reference -->
                                     <classpath refid="maven.compile.classpath" />

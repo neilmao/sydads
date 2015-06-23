@@ -3,12 +3,17 @@ package com.sydads.service;
 import com.sydads.data.User;
 import com.sydads.repository.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import javax.transaction.Transactional;
 
 /**
  * Created with IntelliJ IDEA.
  * User: neilmao
  * Date: 30/05/15
  */
+@Service
+@Transactional
 public class UserServiceImpl implements UserService {
 
     @Autowired

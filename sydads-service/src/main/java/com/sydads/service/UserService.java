@@ -8,7 +8,6 @@ import org.springframework.stereotype.Component;
  * User: neilmao
  * Date: 30/05/15
  */
-@Component
 public interface UserService {
 
     boolean checkIfEmailIsUsed(String email);

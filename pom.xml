@@ -13,6 +13,7 @@
         <module>sydads-repository</module>
         <module>sydads-service</module>
         <module>sydads-tools</module>
+        <module>sydads-web</module>
     </modules>
 
     <properties>

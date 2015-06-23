@@ -18,7 +18,7 @@ import java.util.Properties;
  */
 @EnableWebMvc
 @Configuration
-@ComponentScan({ "com.sydads.*" })
+@ComponentScan({"com.sydads.service", "com.sydads.repository" })
 @EnableTransactionManagement
 @Import({ SecurityConfig.class })
 public class AppConfig {

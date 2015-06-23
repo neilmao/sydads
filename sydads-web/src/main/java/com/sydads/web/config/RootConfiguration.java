@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 /**
  * Created by neilmao on 16/06/2015.
  */
-@Configuration
-@ComponentScan
-public class RootConfiguration {
-}
+//@Configuration
+//@ComponentScan
+//public class RootConfiguration {
+//}
