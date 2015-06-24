@@ -1,14 +1,12 @@
 package com.sydads.service;
 
-import com.sydads.data.User;
+import com.sydads.data.model.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.Assert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-
-import static junit.framework.Assert.assertNotNull;
-import static junit.framework.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -31,7 +29,7 @@ public class UserServiceImplTest {
 
         User user = userService.register(testingEmail, testingPassword);
 
-        assertNotNull(user);
-        assertTrue(userService.checkIfEmailIsUsed(testingEmail));
+        Assert.assertNotNull(user);
+        Assert.assertTrue(userService.checkIfEmailIsUsed(testingEmail));
     }
 }

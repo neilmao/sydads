@@ -15,7 +15,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
  * Created by neilmao on 16/06/2015.
  */
 @Configuration
-@ComponentScan
+@ComponentScan({"com.sydads.web", "com.sydads.service", "com.sydads.repository"})
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 

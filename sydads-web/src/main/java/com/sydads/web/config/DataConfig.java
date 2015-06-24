@@ -4,10 +4,17 @@ import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
 import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.JpaVendorAdapter;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import java.util.Properties;
 
 /**
@@ -18,22 +25,36 @@ import java.util.Properties;
 public class DataConfig {
 
     @Bean
-    public SessionFactory sessionFactory() {
-        LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-        builder.scanPackages("com.sydads.data").addProperties(getHibernateProperties());
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+        entityManager.setDataSource(dataSource());
+        entityManager.setPackagesToScan(new String[]{"com.sydads.data.model"});
 
-        return builder.buildSessionFactory();
+        JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        entityManager.setJpaVendorAdapter(vendorAdapter);
+        entityManager.setJpaProperties(getHibernateProperties());
+
+        return entityManager;
     }
 
     private Properties getHibernateProperties() {
-        Properties prop = new Properties();
-        prop.put("hibernate.format_sql", "true");
-        prop.put("hibernate.show_sql", "true");
-        prop.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
-        return prop;
+        Properties properties = new Properties();
+        properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
+        properties.put("hibernate.format_sql", "true");
+        properties.put("hibernate.show_sql", "true");
+        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
+        return properties;
     }
 
-    @Bean(name = "dataSource")
+//    @Bean
+//    public SessionFactory sessionFactory() {
+//        LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
+//        builder.scanPackages("com.sydads.data.model").addProperties(getHibernateProperties());
+//
+//        return builder.buildSessionFactory();
+//    }
+
+    @Bean
     public BasicDataSource dataSource() {
         BasicDataSource ds = new BasicDataSource();
         ds.setDriverClassName("org.postgresql.Driver");
@@ -43,9 +64,20 @@ public class DataConfig {
         return ds;
     }
 
-    //Create a transaction manager
     @Bean
-    public HibernateTransactionManager txManager() {
-        return new HibernateTransactionManager(sessionFactory());
+    public PersistenceExceptionTranslationPostProcessor exceptionTranslation(){
+        return new PersistenceExceptionTranslationPostProcessor();
     }
+
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
+
+//    @Bean
+//    public HibernateTransactionManager transactionManager() {
+//        return new HibernateTransactionManager(sessionFactory());
+//    }
 }

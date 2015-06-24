@@ -23,6 +23,7 @@ public class VisitorTools {
      * <p/>
      * This is useful for deproxying an object
      */
+    @SuppressWarnings("unchecked")
     public static void doVisit(Visitor visitor, AcceptsVisitor acceptsVisitor) {
         Method method;
         boolean found = false;

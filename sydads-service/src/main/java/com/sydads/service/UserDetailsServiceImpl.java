@@ -1,8 +1,8 @@
 package com.sydads.service;
 
-import com.sydads.data.User;
-import com.sydads.data.Role;
-import com.sydads.data.UserStatus;
+import com.sydads.data.model.User;
+import com.sydads.data.model.Role;
+import com.sydads.data.model.UserStatus;
 import com.sydads.repository.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;

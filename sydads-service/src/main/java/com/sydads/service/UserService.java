@@ -1,7 +1,6 @@
 package com.sydads.service;
 
-import com.sydads.data.User;
-import org.springframework.stereotype.Component;
+import com.sydads.data.model.User;
 
 /**
  * Created with IntelliJ IDEA.

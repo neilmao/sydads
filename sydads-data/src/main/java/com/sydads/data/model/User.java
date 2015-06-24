@@ -1,4 +1,4 @@
-package com.sydads.data;
+package com.sydads.data.model;
 
 import com.sydads.Guid;
 
@@ -96,7 +96,7 @@ public class User extends Guid {
         this.verifyDate = verifyDate;
     }
 
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @Enumerated(EnumType.STRING)
     @Column(name = "UserRole")
     public Set<Role> getRoles() {

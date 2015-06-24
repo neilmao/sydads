@@ -19,7 +19,7 @@ import org.springframework.web.servlet.view.tiles3.TilesView;
  */
 @Configuration
 @EnableWebMvc
-@ComponentScan({"com.sydads.web", "com.sydads.service", "com.sydads.repository"})
+@ComponentScan
 public class WebConfig extends WebMvcConfigurerAdapter {
 
     @Override

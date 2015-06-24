@@ -1,4 +1,4 @@
-package com.sydads.data;
+package com.sydads.data.model;
 
 import com.sydads.Guid;
 
