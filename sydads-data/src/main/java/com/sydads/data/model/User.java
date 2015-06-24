@@ -13,7 +13,8 @@ import java.util.Set;
  * Date: 8/05/15
  */
 
-@Entity(name = "AdsUser")
+@Entity
+@Table(name = "AdsUser")
 public class User extends Guid {
 
     private String email;

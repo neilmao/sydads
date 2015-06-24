@@ -23,11 +23,6 @@
             <version>9.4-1201-jdbc41</version>
         </dependency>
         <dependency>
-            <groupId>org.eclipse.persistence</groupId>
-            <artifactId>org.eclipse.persistence.jpa</artifactId>
-            <version>2.6.0</version>
-        </dependency>
-        <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.9.Final</version>
@@ -36,30 +31,30 @@
 
     <build>
         <plugins>
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <version>1.8</version>
-                <executions>
-                    <execution>
-                        <id>generate-ddl-create</id>
-                        <phase>process-classes</phase>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                        <configuration>
-                            <target>
-                                <!-- ANT Task definition -->
-                                <java classname="com.sydads.data.jpa.JpaSchemaExport" fork="true" failonerror="true">
-                                    <arg value="sydads-data" />
-                                    <arg value="src/main/resources/jpa/sql/" />
-                                    <!-- reference to the passed-in classpath reference -->
-                                    <classpath refid="maven.compile.classpath" />
-                                </java>
-                            </target>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+            <!--<plugin>-->
+                <!--<artifactId>maven-antrun-plugin</artifactId>-->
+                <!--<version>1.8</version>-->
+                <!--<executions>-->
+                    <!--<execution>-->
+                        <!--<id>generate-ddl-create</id>-->
+                        <!--<phase>process-classes</phase>-->
+                        <!--<goals>-->
+                            <!--<goal>run</goal>-->
+                        <!--</goals>-->
+                        <!--<configuration>-->
+                            <!--<target>-->
+                                <!--&lt;!&ndash; ANT Task definition &ndash;&gt;-->
+                                <!--<java classname="com.sydads.data.jpa.JpaSchemaExport" fork="true" failonerror="true">-->
+                                    <!--<arg value="sydads-data" />-->
+                                    <!--<arg value="src/main/resources/jpa/sql/" />-->
+                                    <!--&lt;!&ndash; reference to the passed-in classpath reference &ndash;&gt;-->
+                                    <!--<classpath refid="maven.compile.classpath" />-->
+                                <!--</java>-->
+                            <!--</target>-->
+                        <!--</configuration>-->
+                    <!--</execution>-->
+                <!--</executions>-->
+            <!--</plugin>-->
         </plugins>
     </build>
 

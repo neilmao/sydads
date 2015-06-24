@@ -1,12 +1,9 @@
 package com.sydads.web.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
-import org.springframework.orm.hibernate4.HibernateTransactionManager;
-import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
@@ -40,19 +37,11 @@ public class DataConfig {
     private Properties getHibernateProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "create-drop");
-        properties.put("hibernate.format_sql", "true");
-        properties.put("hibernate.show_sql", "true");
-        properties.put("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
+        properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("hibernate.show_sql", "true");
+        properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQL9Dialect");
         return properties;
     }
-
-//    @Bean
-//    public SessionFactory sessionFactory() {
-//        LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-//        builder.scanPackages("com.sydads.data.model").addProperties(getHibernateProperties());
-//
-//        return builder.buildSessionFactory();
-//    }
 
     @Bean
     public BasicDataSource dataSource() {
@@ -75,9 +64,4 @@ public class DataConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-
-//    @Bean
-//    public HibernateTransactionManager transactionManager() {
-//        return new HibernateTransactionManager(sessionFactory());
-//    }
 }

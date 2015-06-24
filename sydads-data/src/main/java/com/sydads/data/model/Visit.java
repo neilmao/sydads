@@ -3,6 +3,7 @@ package com.sydads.data.model;
 import com.sydads.Guid;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -12,7 +13,8 @@ import java.util.Map;
  * User: neilmao
  * Date: 8/05/15
  */
-@Entity(name = "Visit")
+@Entity
+@Table(name = "Visit")
 public class Visit extends Guid {
 
     private String ip;

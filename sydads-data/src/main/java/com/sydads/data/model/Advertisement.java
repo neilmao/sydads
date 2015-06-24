@@ -3,6 +3,7 @@ package com.sydads.data.model;
 import com.sydads.Guid;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.List;
 
@@ -11,7 +12,8 @@ import java.util.List;
  * User: neilmao
  * Date: 8/05/15
  */
-@Entity(name = "Advertisement")
+@Entity
+@Table(name = "Advertisement")
 public class Advertisement extends Guid {
 
     private String content;

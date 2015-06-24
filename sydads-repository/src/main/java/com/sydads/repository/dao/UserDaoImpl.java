@@ -1,11 +1,11 @@
 package com.sydads.repository.dao;
 
 import com.sydads.data.model.User;
-import org.hibernate.Query;
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import java.util.List;
 
@@ -18,14 +18,14 @@ import java.util.List;
 @Transactional
 public class UserDaoImpl implements UserDao{
 
-    @Autowired
-    private SessionFactory sessionFactory;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public User findUserByEmail(String email) {
 
-        Query query = sessionFactory.getCurrentSession().createQuery("select user from AdsUser user where user.email = :email");
+        Query query = entityManager.createQuery("select user from AdsUser user where user.email = :email");
         query.setParameter("email", email);
-        List<User> result = query.list();
+        List<User> result = query.getResultList();
         if (result.size() > 0)
             return result.get(0);
         else
@@ -33,9 +33,9 @@ public class UserDaoImpl implements UserDao{
     }
 
     public boolean checkIfEmailIsUsed(String email) {
-        Query query = sessionFactory.getCurrentSession().createQuery("select user from AdsUser user where user.email = :email");
+        Query query = entityManager.createQuery("select user from AdsUser user where user.email = :email");
         query.setParameter("email", email);
-        List<User> result = query.list();
+        List<User> result = query.getResultList();
         return result.size() > 0;
     }
 }

@@ -3,6 +3,7 @@ package com.sydads.data.model;
 import com.sydads.Guid;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.util.List;
 
 /**
@@ -10,7 +11,8 @@ import java.util.List;
  * User: neilmao
  * Date: 8/05/15
  */
-@Entity(name = "Tracker")
+@Entity
+@Table(name = "Tracker")
 public class Tracker extends Guid {
 
     private Advertisement advertisement;
