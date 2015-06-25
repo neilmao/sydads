@@ -1,4 +1,4 @@
-package com.sydads;
+package com.sydads.data;
 
 /**
  * Created with IntelliJ IDEA.

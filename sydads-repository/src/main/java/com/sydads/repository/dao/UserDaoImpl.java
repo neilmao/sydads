@@ -1,6 +1,7 @@
 package com.sydads.repository.dao;
 
 import com.sydads.data.model.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
@@ -19,6 +20,7 @@ import java.util.List;
 public class UserDaoImpl implements UserDao{
 
     @PersistenceContext
+    @Autowired
     private EntityManager entityManager;
 
     public User findUserByEmail(String email) {

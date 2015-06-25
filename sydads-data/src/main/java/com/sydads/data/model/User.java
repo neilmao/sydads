@@ -1,6 +1,6 @@
 package com.sydads.data.model;
 
-import com.sydads.Guid;
+import com.sydads.data.Guid;
 
 import javax.persistence.*;
 import java.util.Collections;

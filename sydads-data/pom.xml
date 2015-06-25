@@ -27,6 +27,11 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.9.Final</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-orm</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -44,7 +49,7 @@
                         <!--<configuration>-->
                             <!--<target>-->
                                 <!--&lt;!&ndash; ANT Task definition &ndash;&gt;-->
-                                <!--<java classname="com.sydads.data.jpa.JpaSchemaExport" fork="true" failonerror="true">-->
+                                <!--<java classname="com.sydads.repository.tools.JpaSchemaExport" fork="true" failonerror="true">-->
                                     <!--<arg value="sydads-data" />-->
                                     <!--<arg value="src/main/resources/jpa/sql/" />-->
                                     <!--&lt;!&ndash; reference to the passed-in classpath reference &ndash;&gt;-->

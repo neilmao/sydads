@@ -1,4 +1,4 @@
-package com.sydads.web.config;
+package com.sydads.repository.config;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;

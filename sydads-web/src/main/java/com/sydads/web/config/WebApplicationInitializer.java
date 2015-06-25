@@ -1,5 +1,6 @@
 package com.sydads.web.config;
 
+import com.sydads.repository.config.DataConfig;
 import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
