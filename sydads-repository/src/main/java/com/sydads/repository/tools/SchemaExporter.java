@@ -5,6 +5,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.jpa.HibernatePersistenceProvider;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 
 import javax.persistence.EntityManagerFactory;
@@ -20,20 +21,22 @@ import java.util.Set;
  * User: neilmao
  * Date: 20/04/15
  */
-public class SchemaExport {
+public class SchemaExporter {
 
-    private final static Log LOG = LogFactory.getLog(SchemaExport.class);
+    private final static Log LOG = LogFactory.getLog(SchemaExporter.class);
 
     private final String sqlFile = "schema.sql";
 
     public static void main(String[] args) throws IOException {
-        new SchemaExport().execute();
+        new SchemaExporter().execute();
         System.exit(0);
     }
 
     public void execute() {
 
-        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = new DataConfig().entityManagerFactory();
+        DataConfig dataConfig = new DataConfig();
+
+        LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean = dataConfig.entityManagerFactory();
 
         PersistenceProvider persistenceProvider = new HibernatePersistenceProvider();
 
@@ -43,13 +46,15 @@ public class SchemaExport {
 
         Configuration configuration = new Configuration();
 
+        configuration.addProperties(dataConfig.getHibernateProperties());
+
         Set<ManagedType<?>> managedTypeSet = entityManagerFactory.getMetamodel().getManagedTypes();
 
         for (ManagedType<?> managedType : managedTypeSet) {
             configuration.addAnnotatedClass(managedType.getJavaType());
         }
 
-        org.hibernate.tool.hbm2ddl.SchemaExport schemaExport = new org.hibernate.tool.hbm2ddl.SchemaExport(configuration);
+        SchemaExport schemaExport = new SchemaExport(configuration);
 
         Path currentRelativePath = Paths.get("");
         String path = currentRelativePath.toAbsolutePath().toString();

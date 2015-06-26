@@ -25,7 +25,7 @@ public class UserDaoImpl implements UserDao{
 
     public User findUserByEmail(String email) {
 
-        Query query = entityManager.createQuery("select user from AdsUser user where user.email = :email");
+        Query query = entityManager.createQuery("select user from User user where user.email = :email");
         query.setParameter("email", email);
         List<User> result = query.getResultList();
         if (result.size() > 0)
@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao{
     }
 
     public boolean checkIfEmailIsUsed(String email) {
-        Query query = entityManager.createQuery("select user from AdsUser user where user.email = :email");
+        Query query = entityManager.createQuery("select user from User user where user.email = :email");
         query.setParameter("email", email);
         List<User> result = query.getResultList();
         return result.size() > 0;
