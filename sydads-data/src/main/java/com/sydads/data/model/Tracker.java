@@ -5,6 +5,7 @@ import com.sydads.data.Guid;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +21,6 @@ public class Tracker extends Guid {
     private int maxVisit;
     private int validVisit;
     private int score;
-    private List<Visit> adsVisitList;
+    private Set<Request> requestSet;
 
 }

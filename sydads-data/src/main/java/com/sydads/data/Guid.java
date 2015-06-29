@@ -1,6 +1,5 @@
 package com.sydads.data;
 
-import com.sydads.data.Id;
 import com.sydads.tools.AcceptsVisitor;
 import com.sydads.tools.Visitor;
 import com.sydads.tools.VisitorTools;

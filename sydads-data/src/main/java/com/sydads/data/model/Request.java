@@ -14,8 +14,8 @@ import java.util.Map;
  * Date: 8/05/15
  */
 @Entity
-@Table(name = "Visit")
-public class Visit extends Guid {
+@Table(name = "Request")
+public class Request extends Guid {
 
     private String ip;
     private String os;
@@ -25,12 +25,12 @@ public class Visit extends Guid {
 
     private Map<String, String> paramsMap;
 
-    public Visit() {
+    public Request() {
         this.paramsMap = new HashMap<>();
         this.timeStamp = new Date();
     }
 
-    public Visit(String params) {
+    public Request(String params) {
 
     }
 }

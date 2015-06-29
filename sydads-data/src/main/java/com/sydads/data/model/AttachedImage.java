@@ -2,9 +2,7 @@ package com.sydads.data.model;
 
 import com.sydads.data.Guid;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -15,9 +13,32 @@ import javax.persistence.Table;
 @Table(name = "AttachedImage")
 public class AttachedImage extends Guid {
 
-    private Advertisement advertisement;
+    private String fileName;
+    private Long fileSize;
 
-    @ManyToOne
+    private Advertisement advertisement;
+    private News news;
+
+    @Column(name = "FileName")
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
+    @Column(name = "FileSize")
+    public Long getFileSize() {
+        return fileSize;
+    }
+
+    public void setFileSize(Long fileSize) {
+        this.fileSize = fileSize;
+    }
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "AdvertisementId")
     public Advertisement getAdvertisement() {
         return advertisement;
     }
@@ -26,4 +47,13 @@ public class AttachedImage extends Guid {
         this.advertisement = advertisement;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "NewsId")
+    public News getNews() {
+        return news;
+    }
+
+    public void setNews(News news) {
+        this.news = news;
+    }
 }

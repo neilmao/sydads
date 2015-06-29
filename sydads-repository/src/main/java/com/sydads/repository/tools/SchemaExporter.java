@@ -25,7 +25,7 @@ public class SchemaExporter {
 
     private final static Log LOG = LogFactory.getLog(SchemaExporter.class);
 
-    private final String sqlFile = "schema.sql";
+    private final String sqlFile = "src/main/resources/schema.sql";
 
     public static void main(String[] args) throws IOException {
         new SchemaExporter().execute();

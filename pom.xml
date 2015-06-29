@@ -21,6 +21,8 @@
         <slf4j-api-version>1.7.5</slf4j-api-version>
         <spring.security.version>4.0.1.RELEASE</spring.security.version>
         <spring.version>4.1.6.RELEASE</spring.version>
+        <hibernate.version>4.3.9.Final</hibernate.version>
+        <postgresql.version>9.4-1201-jdbc41</postgresql.version>
     </properties>
 
     <dependencies>

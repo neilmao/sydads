@@ -28,6 +28,16 @@ public class User extends Guid {
     private Set<Role> roles;
     private UserStatus status;
 
+    // as a vendor, I can publish some advertisements
+    private Set<Advertisement> publishedAdvertisements;
+
+    // as a pusher, I can push some advertisements
+    private Set<Advertisement> pushedAdvertisements;
+
+    // as a user, I can publish News
+    private Set<News> publishedNews;
+
+
     public User() {
         roles = Collections.singleton(Role.Pusher);
         registerDate = new Date();
@@ -79,6 +89,7 @@ public class User extends Guid {
         this.mobile = mobile;
     }
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "RegisterDate")
     public Date getRegisterDate() {
         return registerDate;
@@ -88,6 +99,7 @@ public class User extends Guid {
         this.registerDate = registerDate;
     }
 
+    @Temporal(TemporalType.DATE)
     @Column(name = "VerifyDate")
     public Date getVerifyDate() {
         return verifyDate;
@@ -115,5 +127,35 @@ public class User extends Guid {
 
     public void setStatus(UserStatus status) {
         this.status = status;
+    }
+
+    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
+    public Set<Advertisement> getPublishedAdvertisements() {
+        return publishedAdvertisements;
+    }
+
+    public void setPublishedAdvertisements(Set<Advertisement> publishedAdvertisements) {
+        this.publishedAdvertisements = publishedAdvertisements;
+    }
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "UserPushedAdvertisement",
+            joinColumns = {@JoinColumn(name = "UserId", nullable = false, updatable = false) },
+            inverseJoinColumns = {@JoinColumn(name = "AdvertisementId", nullable = false, updatable = false) })
+    public Set<Advertisement> getPushedAdvertisements() {
+        return pushedAdvertisements;
+    }
+
+    public void setPushedAdvertisements(Set<Advertisement> pushedAdvertisements) {
+        this.pushedAdvertisements = pushedAdvertisements;
+    }
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
+    public Set<News> getPublishedNews() {
+        return publishedNews;
+    }
+
+    public void setPublishedNews(Set<News> publishedNews) {
+        this.publishedNews = publishedNews;
     }
 }

@@ -3,9 +3,7 @@ package com.sydads.data.model;
 import com.sydads.data.Guid;
 
 import javax.persistence.*;
-import java.util.Date;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -18,27 +16,28 @@ public class Advertisement extends Guid {
 
     private String content;
     private String title;
-    private List<AttachedImage> images;
+    private Set<AttachedImage> images;
     private Date createdDate;
     private Date updatedDate;
     private Date expireDate;
     private AdvertisementStatus status;
-    private User owner;
+    private User vendor;
     private AdsCategory category;
+    private Set<User> pushers;
 
     protected Advertisement() {
-        images = new LinkedList<>();
+        images = new HashSet<>();
         createdDate = new Date();
         updatedDate = createdDate;
         status = AdvertisementStatus.Inactive;
     }
 
-    public Advertisement(String title, String content, AdsCategory category, User owner, List<AttachedImage> images) {
+    public Advertisement(String title, String content, AdsCategory category, User vendor, Set<AttachedImage> images) {
         this();
         this.title = title;
         this.content = content;
         this.category = category;
-        this.owner = owner;
+        this.vendor = vendor;
         this.images = images;
     }
 
@@ -60,12 +59,12 @@ public class Advertisement extends Guid {
         this.title = title;
     }
 
-    @OneToMany(mappedBy = "Advertisement", cascade = CascadeType.ALL)
-    public List<AttachedImage> getImages() {
+    @OneToMany(mappedBy = "advertisement", cascade = CascadeType.ALL)
+    public Set<AttachedImage> getImages() {
         return images;
     }
 
-    public void setImages(List<AttachedImage> images) {
+    public void setImages(Set<AttachedImage> images) {
         this.images = images;
     }
 
@@ -110,14 +109,14 @@ public class Advertisement extends Guid {
         this.status = status;
     }
 
-    @ManyToOne
-    @Column(name = "Owner")
-    public User getOwner() {
-        return owner;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "VendorId")
+    public User getVendor() {
+        return vendor;
     }
 
-    public void setOwner(User poster) {
-        this.owner = poster;
+    public void setVendor(User vendor) {
+        this.vendor = vendor;
     }
 
     @Column(name = "Category")
@@ -127,5 +126,14 @@ public class Advertisement extends Guid {
 
     public void setCategory(AdsCategory category) {
         this.category = category;
+    }
+
+    @ManyToMany(mappedBy = "pushedAdvertisements", fetch = FetchType.LAZY)
+    public Set<User> getPushers() {
+        return pushers;
+    }
+
+    public void setPushers(Set<User> pushers) {
+        this.pushers = pushers;
     }
 }
