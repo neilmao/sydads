@@ -10,4 +10,6 @@ public interface UserDao {
     User findUserByEmail(String email);
 
     boolean checkIfEmailIsUsed(String email);
+
+    User persist(User user);
 }

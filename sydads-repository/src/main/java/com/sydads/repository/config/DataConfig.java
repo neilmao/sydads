@@ -58,10 +58,10 @@ public class DataConfig {
 //        return new PersistenceExceptionTranslationPostProcessor();
 //    }
 
-//    @Bean
-//    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
-//        JpaTransactionManager transactionManager = new JpaTransactionManager();
-//        transactionManager.setEntityManagerFactory(entityManagerFactory);
-//        return transactionManager;
-//    }
+    @Bean
+    public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(entityManagerFactory);
+        return transactionManager;
+    }
 }

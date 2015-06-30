@@ -17,12 +17,13 @@ import java.util.List;
  */
 @Repository
 @Transactional
-public class UserDaoImpl implements UserDao{
+public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
     @Autowired
     private EntityManager entityManager;
 
+    @Override
     public User findUserByEmail(String email) {
 
         Query query = entityManager.createQuery("select user from User user where user.email = :email");
@@ -34,10 +35,17 @@ public class UserDaoImpl implements UserDao{
             return null;
     }
 
+    @Override
     public boolean checkIfEmailIsUsed(String email) {
         Query query = entityManager.createQuery("select user from User user where user.email = :email");
         query.setParameter("email", email);
         List<User> result = query.getResultList();
         return result.size() > 0;
+    }
+
+    @Override
+    public User persist(User user) {
+        entityManager.persist(user);
+        return user;
     }
 }

@@ -6,9 +6,9 @@
         LastName varchar(255),
         Mobile varchar(255),
         Password varchar(255),
-        RegisterDate timestamp,
+        RegisterDate date,
         UserStatus int4,
-        VerifyDate timestamp,
+        VerifyDate date,
         primary key (id)
     )
 

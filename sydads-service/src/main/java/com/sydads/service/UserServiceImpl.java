@@ -31,7 +31,7 @@ public class UserServiceImpl implements UserService {
             User user = new User();
             user.setEmail(email);
             user.setPassword(password);
-            return user;
+            return userDao.persist(user);
         } else {
             return null;
         }
