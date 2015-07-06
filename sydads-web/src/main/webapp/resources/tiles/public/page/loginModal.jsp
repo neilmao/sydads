@@ -33,6 +33,7 @@
                 <label for="password">密码</label>
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
               </div>
+              <span>没有账号？<a href="/register" style="color: red">新用户注册</a></span>
             </fieldset>
           </div>
         </div>

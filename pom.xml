@@ -23,6 +23,7 @@
         <spring.version>4.1.6.RELEASE</spring.version>
         <hibernate.version>4.3.9.Final</hibernate.version>
         <postgresql.version>9.4-1201-jdbc41</postgresql.version>
+        <commons-lang3.version>3.0</commons-lang3.version>
     </properties>
 
     <dependencies>

@@ -13,7 +13,7 @@
     <meta name="author" content="">
     <link rel="icon" href="../favicon.ico">
 
-    <title>welcome to sydads</title>
+    <title>悉尼广告互助平台</title>
 
     <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 

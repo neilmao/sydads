@@ -28,6 +28,7 @@
                 <input type="password" class="form-control" id="password" placeholder="Password" name="password">
             </div>
             <button type="submit" class="btn btn-default">登录</button>
+            <span>没有账号？<a href="/register" style="color: red">新用户注册</a></span>
         </fieldset>
     </form>
 </div>

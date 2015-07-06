@@ -21,18 +21,18 @@ public class Advertisement extends Guid {
     private Date updatedDate;
     private Date expireDate;
     private AdvertisementStatus status;
-    private User vendor;
+    private Vendor vendor;
     private AdsCategory category;
-    private Set<User> pushers;
+    private Set<News> newsContainers;
 
     protected Advertisement() {
-        images = new HashSet<>();
-        createdDate = new Date();
-        updatedDate = createdDate;
-        status = AdvertisementStatus.Inactive;
+        this.images = new HashSet<>();
+        this.createdDate = new Date();
+        this.updatedDate = createdDate;
+        this.status = AdvertisementStatus.Inactive;
     }
 
-    public Advertisement(String title, String content, AdsCategory category, User vendor, Set<AttachedImage> images) {
+    public Advertisement(String title, String content, AdsCategory category, Vendor vendor, Set<AttachedImage> images) {
         this();
         this.title = title;
         this.content = content;
@@ -111,14 +111,15 @@ public class Advertisement extends Guid {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "VendorId")
-    public User getVendor() {
+    public Vendor getVendor() {
         return vendor;
     }
 
-    public void setVendor(User vendor) {
+    public void setVendor(Vendor vendor) {
         this.vendor = vendor;
     }
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "Category")
     public AdsCategory getCategory() {
         return category;
@@ -128,12 +129,12 @@ public class Advertisement extends Guid {
         this.category = category;
     }
 
-    @ManyToMany(mappedBy = "pushedAdvertisements", fetch = FetchType.LAZY)
-    public Set<User> getPushers() {
-        return pushers;
+    @ManyToMany(mappedBy = "advertisements", fetch = FetchType.LAZY)
+    public Set<News> getNewsContainers() {
+        return newsContainers;
     }
 
-    public void setPushers(Set<User> pushers) {
-        this.pushers = pushers;
+    public void setNewsContainers(Set<News> newsContainers) {
+        this.newsContainers = newsContainers;
     }
 }

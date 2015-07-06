@@ -5,6 +5,7 @@ import com.sydads.data.Guid;
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -15,33 +16,27 @@ import java.util.Set;
 
 @Entity
 @Table(name = "AdsUser")
-public class User extends Guid {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "Class")
+@DiscriminatorValue("Abstract")
+public abstract class User extends Guid {
 
     private String email;
     private String password;
 
     private String firstName;
     private String lastName;
+    private String businessName;
     private String mobile;
     private Date registerDate;
     private Date verifyDate;
-    private Set<Role> roles;
+    protected Set<Role> roles;
     private UserStatus status;
 
-    // as a vendor, I can publish some advertisements
-    private Set<Advertisement> publishedAdvertisements;
-
-    // as a pusher, I can push some advertisements
-    private Set<Advertisement> pushedAdvertisements;
-
-    // as a user, I can publish News
-    private Set<News> publishedNews;
-
-
-    public User() {
-        roles = Collections.singleton(Role.Pusher);
-        registerDate = new Date();
-        status = UserStatus.WaitingVerify;
+    protected User() {
+        this.roles = new HashSet<>();
+        this.registerDate = new Date();
+        this.status = UserStatus.WaitingVerify;
     }
 
     @Column(name = "Email")
@@ -80,6 +75,15 @@ public class User extends Guid {
         this.lastName = lastName;
     }
 
+    @Column(name = "BusinessName")
+    public String getBusinessName() {
+        return businessName;
+    }
+
+    public void setBusinessName(String businessName) {
+        this.businessName = businessName;
+    }
+
     @Column(name = "Mobile")
     public String getMobile() {
         return mobile;
@@ -110,7 +114,7 @@ public class User extends Guid {
     }
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(name = "UserRole")
     public Set<Role> getRoles() {
         return roles;
@@ -120,42 +124,12 @@ public class User extends Guid {
         this.roles = roles;
     }
 
-    @Column(name = "UserStatus")
+    @Column(name = "Status")
     public UserStatus getStatus() {
         return status;
     }
 
     public void setStatus(UserStatus status) {
         this.status = status;
-    }
-
-    @OneToMany(mappedBy = "vendor", cascade = CascadeType.ALL)
-    public Set<Advertisement> getPublishedAdvertisements() {
-        return publishedAdvertisements;
-    }
-
-    public void setPublishedAdvertisements(Set<Advertisement> publishedAdvertisements) {
-        this.publishedAdvertisements = publishedAdvertisements;
-    }
-
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "UserPushedAdvertisement",
-            joinColumns = {@JoinColumn(name = "UserId", nullable = false, updatable = false) },
-            inverseJoinColumns = {@JoinColumn(name = "AdvertisementId", nullable = false, updatable = false) })
-    public Set<Advertisement> getPushedAdvertisements() {
-        return pushedAdvertisements;
-    }
-
-    public void setPushedAdvertisements(Set<Advertisement> pushedAdvertisements) {
-        this.pushedAdvertisements = pushedAdvertisements;
-    }
-
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
-    public Set<News> getPublishedNews() {
-        return publishedNews;
-    }
-
-    public void setPublishedNews(Set<News> publishedNews) {
-        this.publishedNews = publishedNews;
     }
 }
