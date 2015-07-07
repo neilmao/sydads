@@ -11,10 +11,10 @@
         <a class="navbar-brand" href="#">关于我们</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse navbar-right navbar-form">
-        <sec:authorize access="!hasAuthority('User')">
+        <sec:authorize access="!hasAuthority('Pusher')">
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginModal">登录</button>
         </sec:authorize>
-        <sec:authorize access="hasAuthority('User')">
+        <sec:authorize access="hasAuthority('Pusher')">
             <form action="/logout" method="post">
                 <sec:authentication property="principal.username"/>
                 <a href="javascript:;" onclick="parentNode.submit();">退出</a>

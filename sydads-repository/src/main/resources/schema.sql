@@ -92,8 +92,8 @@
         Amount float8,
         Date date,
         AdminId varchar(64),
-        VendorId varchar(64),
         PusherId varchar(64),
+        VendorId varchar(64),
         primary key (id)
     )
 
@@ -172,13 +172,13 @@
         references AdsUser
 
     alter table Payment 
-        add constraint FK_t7htg4m36v5rucc2tidk9fgu4 
-        foreign key (VendorId) 
+        add constraint FK_ki2yegs6man3esnbwsbwn3y8g 
+        foreign key (PusherId) 
         references AdsUser
 
     alter table Payment 
-        add constraint FK_ki2yegs6man3esnbwsbwn3y8g 
-        foreign key (PusherId) 
+        add constraint FK_t7htg4m36v5rucc2tidk9fgu4 
+        foreign key (VendorId) 
         references AdsUser
 
     alter table Tracker 

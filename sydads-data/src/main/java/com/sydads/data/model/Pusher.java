@@ -18,7 +18,9 @@ public class Pusher extends User {
 
     public Pusher() {
         super();
-        roles.add(Role.Pusher);
+        this.roles.add(Role.Pusher);
+        this.totalRewards = 0;
+        this.remainedRewards = 0;
     }
 
     @Column(name = "TotalRewards")
