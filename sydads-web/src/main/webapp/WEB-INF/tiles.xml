@@ -5,7 +5,7 @@
 
 <tiles-definitions>
 
-    <definition name="public.page.defaultTemplate" template="/resources/tiles/public/page/defaultTemplate.jsp">
+    <definition name="defaultTemplate" template="/resources/tiles/public/page/defaultTemplate.jsp">
         <put-attribute name="nav" value="/resources/tiles/public/page/nav.jsp" />
         <put-attribute name="banner" value="/resources/tiles/public/page/banner.jsp" />
         <put-attribute name="body" value="" />
@@ -13,16 +13,19 @@
         <put-attribute name="loginModal" value="/resources/tiles/public/page/loginModal.jsp" />
     </definition>
 
-    <definition name="index" extends="public.page.defaultTemplate">
+    <definition name="index" extends="defaultTemplate">
         <put-attribute name="body" value="/resources/tiles/public/page/indexBody.jsp" />
     </definition>
 
-    <definition name="login" extends="public.page.defaultTemplate">
+    <definition name="login" extends="defaultTemplate">
         <put-attribute name="body" value="/resources/tiles/public/page/loginBody.jsp" />
     </definition>
 
-    <definition name="register" extends="public.page.defaultTemplate">
+    <definition name="register" extends="defaultTemplate">
         <put-attribute name="body" value="/resources/tiles/public/page/registerBody.jsp" />
+    </definition>
+
+    <definition name="pusher/home" extends="defaultTemplate">
     </definition>
 
 </tiles-definitions>
