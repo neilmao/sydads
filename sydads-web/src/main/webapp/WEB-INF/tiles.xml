@@ -8,7 +8,6 @@
     <definition name="defaultTemplate" template="/resources/tiles/public/page/defaultTemplate.jsp">
         <put-attribute name="nav" value="/resources/tiles/public/page/nav.jsp" />
         <put-attribute name="banner" value="/resources/tiles/public/page/banner.jsp" />
-        <put-attribute name="body" value="" />
         <put-attribute name="footer" value="/resources/tiles/public/page/footer.jsp" />
         <put-attribute name="loginModal" value="/resources/tiles/public/page/loginModal.jsp" />
     </definition>
@@ -25,7 +24,13 @@
         <put-attribute name="body" value="/resources/tiles/public/page/registerBody.jsp" />
     </definition>
 
-    <definition name="pusher/home" extends="defaultTemplate">
+    <definition name="dashboardTemplate" template="/resources/tiles/public/page/dashboardTemplate.jsp">
+        <put-attribute name="nav" value="/resources/tiles/public/page/nav.jsp" />
+        <put-attribute name="footer" value="/resources/tiles/public/page/footer.jsp" />
+    </definition>
+
+    <definition name="pusher/home" extends="dashboardTemplate">
+
     </definition>
 
 </tiles-definitions>
